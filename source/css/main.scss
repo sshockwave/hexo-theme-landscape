@@ -1,0 +1,19 @@
+@import 'variables';
+
+@import '_spectre/src/spectre';
+
+.container{
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title{
+  @extend .h1;
+  @extend .text-center;
+  font-weight: 900;
+}
+
+ol, ul, dl {
+  list-style: outside;
+}

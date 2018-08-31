@@ -1,0 +1,45 @@
+// Core features
+$rtl: false !default;
+
+// Core colors
+$primary-color: #1ba1e2;
+$primary-color-dark: lighten($primary-color, 3%) !default;
+$primary-color-light: darken($primary-color, 3%) !default;
+$secondary-color: darken($primary-color, 37.5%) !default;
+$secondary-color-dark: lighten($secondary-color, 3%) !default;
+$secondary-color-light: darken($secondary-color, 3%) !default;
+
+// Gray colors
+$dark-color: rgb(190, 190, 190) !default;
+$light-color: rgb(26, 26, 26) !default;
+$gray-color: darken($dark-color, 40%) !default;
+$gray-color-dark: lighten($gray-color, 25%) !default;
+$gray-color-light: darken($gray-color, 20%) !default;
+
+$border-color: darken($dark-color, 60%) !default;
+$border-color-dark: lighten($border-color, 10%) !default;
+$bg-color: darken($dark-color, 66%) !default;
+$bg-color-dark: lighten($bg-color, 3%) !default;
+$bg-color-light: $light-color !default;
+
+// Control colors
+$success-color: #32b643 !default;
+$warning-color: #ffb700 !default;
+$error-color: #e85600 !default;
+
+// Other colors
+$code-color: #d73e48 !default;
+$highlight-color: #ffe9b3 !default;
+$body-bg: $bg-color-light !default;
+$body-font-color: darken($dark-color, 5%) !default;
+$link-color: $primary-color !default;
+$link-color-dark: lighten($link-color, 10%) !default;
+$link-color-light: darken($link-color, 10%) !default;
+
+// Font sizes
+$html-font-size: 20px !default;
+$html-line-height: 1.5 !default;
+$font-size: .8rem !default;
+$font-size-sm: .7rem !default;
+$font-size-lg: .9rem !default;
+$line-height: 1.2rem !default;

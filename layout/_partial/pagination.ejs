@@ -1,0 +1,34 @@
+<nav>
+  <ul class="pagination">
+    <% function link(i) {
+      const base = page.base || '';
+      return i === 1 ? base : `${base}${config.pagination_dir}/${i}/`;
+    }%>
+    <% function Item(i, href, className) {%>
+      <li class="page-item <%= className || '' %>">
+        <a href="<%= url_for(href) %>"><%- i %></a>
+      </li>
+    <% } %>
+    <%- Item(prev_text || 'Prev', link(page.current - 1), page.prev ? '' : 'disabled') %>
+    <%
+      const arr = [page.current];
+      for (let i = 1; arr[arr.length - 1] - i >= 1; i *= 2) {
+        arr.push(arr[arr.length - 1] - i);
+      }
+      if (arr[arr.length - 1] > 1) {
+        arr.push(1);
+      }
+      arr.reverse();
+      for (let i = 1; arr[arr.length - 1] + i <= page.total; i *= 2) {
+        arr.push(arr[arr.length - 1] + i);
+      }
+      if (arr[arr.length - 1] < page.total) {
+        arr.push(page.total);
+      }
+    %>
+    <% arr.forEach((i) => { %>
+      <%- Item(i, link(i), i === page.current ? 'active' : '') %>
+    <% }); %>
+    <%- Item(next_text || 'Next', link(page.current + 1), page.next ? '' : 'disabled') %>
+  </ul>
+</nav>

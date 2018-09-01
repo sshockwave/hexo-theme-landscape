@@ -32,7 +32,7 @@ ol, ul, dl {
 
 .navbar {
   padding: $unit-3;
-  box-shadow: 0 0 $unit-12 $unit-1 $secondary-color-light;
+  box-shadow: 0 (-$unit-4) $unit-12 $unit-1 $dark-color;
   background-color: #000;
 }
 
@@ -77,4 +77,8 @@ ol, ul, dl {
       }
     }
   }
+}
+
+.hljs {
+  background-color: #000;
 }

@@ -26,3 +26,16 @@ ol, ul, dl {
 .timeline-left .fa {
   font-size: $unit-6;
 }
+
+.navbar {
+  padding: $unit-3;
+  margin-bottom: $unit-8;
+  box-shadow: 0 (-$unit-4) $unit-12 $unit-1 $primary-color-light;
+}
+
+.footer {
+  padding: $unit-12;
+  background-color: #000;
+  font-size: $font-size-sm;
+  margin-top: $unit-8;
+}

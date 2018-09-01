@@ -1,9 +1,11 @@
-<header class="column">
+<header>
   <nav class="navbar">
-    <section class="navbar-section">
-      <% for (var i in theme.menu){ %>
-        <a href="<%- url_for(theme.menu[i]) %>" class="btn btn-link"><%= i %></a>
-      <% } %>
-    </section>
+    <div class="container">
+      <section class="navbar-section">
+        <% for (var i in theme.menu) { %>
+          <a href="<%- url_for(theme.menu[i]) %>" class="btn btn-link"><%= i %></a>
+        <% } %>
+      </section>
+    </div>
   </nav>
 </header>

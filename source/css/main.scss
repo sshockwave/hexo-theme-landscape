@@ -1,6 +1,7 @@
 @import 'variables';
 
 @import '_spectre/src/spectre';
+@import '_spectre/src/spectre-exp';
 
 .container{
   max-width: 800px;
@@ -20,4 +21,8 @@ ol, ul, dl {
 
 .pagination {
   justify-content: center;
+}
+
+.timeline-left .fa {
+  font-size: $unit-6;
 }

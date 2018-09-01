@@ -1,28 +1,31 @@
-<% if (pagination == 2){ %>
-  <% page.posts.each(function(post){ %>
-    <%- partial('article', {post: post, index: true}) %>
-  <% }) %>
-<% } else { %>
-  <% var last; %>
-  <% page.posts.each(function(post, i){ %>
-    <% var year = post.date.year(); %>
-    <% if (last != year){ %>
-      <% if (last != null){ %>
-        </div></section>
-      <% } %>
-      <% last = year; %>
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
-        </div>
-        <div class="archives">
+<div class="timeline">
+<% let lastdate = null; %>
+<% page.posts.each(function(post, i){ %>
+  <% const curdate = post.date; %>
+  <% if (lastdate === null || lastdate.year() !== curdate.year() || lastdate.month() !== curdate.month()){ %>
+    <% if (lastdate !== null){ %>
+      </div></section>
     <% } %>
-    <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
-  <% }) %>
-  <% if (page.posts.length){ %>
-    </div></section>
+    <% lastdate = curdate; %>
+    <section class="timeline-item">
+      <div class="timeline-left">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+      </div>
+      <div class="timeline-content">
+        <div class="tile tile-centered">
+          <div class="tile-content">
+            <p class="tile-subtitle text-gray">
+              <time datetime="<%= date_xml(curdate) %>"><%= date(curdate, 'YYYY年MMM') %></time>
+            </p>
+          </div>
+        </div>
   <% } %>
+  <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
+<% }) %>
+<% if (page.posts.length){ %>
+  </div></section>
 <% } %>
+</div>
 <% if (page.total > 1){ %>
   <% var prev_text = "&laquo; " + __('prev');var next_text = __('next') + " &raquo;"%>
   <%- partial('pagination', {

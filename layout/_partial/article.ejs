@@ -3,13 +3,18 @@
   <% if (post.link || post.title){ %>
     <header class="text-center">
       <%- partial('post/title', {class_name: 'title'}) %>
-      <div>
-        <%- partial('post/date', {class_name: '', date_format: null}) %>
-        <%- partial('post/category') %>
-      </div>
+      <ul class="meta">
+        <li>
+          <a href="<%- url_for(post.path) %>">
+            <i class="fa fa-link" aria-hidden="true"></i>
+          </a>
+        </li>
+        <%- partial('meta/category') %>
+        <%- partial('meta/tag') %>
+      </ul>
     </header>
   <% } %>
-  <div itemprop="articleBody">
+  <div class="content" itemprop="articleBody">
     <% if (post.excerpt && index){ %>
       <%- post.excerpt %>
       <% if (theme.excerpt_link){ %>
@@ -21,16 +26,8 @@
       <%- post.content %>
     <% } %>
   </div>
-  <hr>
-  <div class="columns">
-    <div class="column">
-      <figure class="avatar avatar-xl">
-        <img src="https://avatars2.githubusercontent.com/u/16837579?v=4" alt="avatar">
-      </figure>
-    </div>
-  </div>
-  <footer>
-    <%- partial('post/tag') %>
-  </footer>
-  <%- partial('post/nav') %>
+  <%- partial('post/author') %>
 </article>
+<footer>
+</footer>
+<%- partial('post/nav') %>

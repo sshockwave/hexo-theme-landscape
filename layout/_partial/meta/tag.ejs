@@ -1,0 +1,11 @@
+<% if (post.tags && post.tags.length){ %>
+  <li>
+    <% post.tags.forEach((tag) => { %>
+      <span class="label label-rounded">
+        <a href="<%= url_for(tag.path) %>">
+          <%= tag.name %>
+        </a>
+      </span>
+    <% }) %>
+  </li>
+<% } %>

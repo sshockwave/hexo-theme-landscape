@@ -3,6 +3,8 @@
 @import '_spectre/src/spectre';
 @import '_spectre/src/spectre-exp';
 
+@import 'meta';
+
 .container{
   max-width: 800px;
   margin-left: auto;
@@ -21,6 +23,7 @@ ol, ul, dl {
 
 .pagination {
   justify-content: center;
+  margin: $unit-6 0;
 }
 
 .timeline-left .fa {
@@ -29,13 +32,49 @@ ol, ul, dl {
 
 .navbar {
   padding: $unit-3;
-  margin-bottom: $unit-8;
   box-shadow: 0 (-$unit-4) $unit-12 $unit-1 $primary-color-light;
+  background-color: #000;
 }
 
 .footer {
   padding: $unit-12;
-  background-color: #000;
   font-size: $font-size-sm;
-  margin-top: $unit-8;
+  background-color: #000;
+}
+
+.content {
+  padding-top: $unit-8;
+  padding-bottom: $unit-8;
+}
+
+.no-box-shadow {
+  box-shadow: none;
+  &:hover {
+    box-shadow: none;
+  }
+  &:active {
+    box-shadow: none;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+  .breadcrumb-item {
+    margin: 0;
+    padding: 0;
+    &:not(:last-child) {
+      margin: 0;
+    }
+    &:not(:first-child) {
+      &::before {
+        color: $gray-color;
+        content: '›';
+        padding: 0;
+      }
+    }
+  }
 }

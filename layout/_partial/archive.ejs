@@ -1,30 +1,49 @@
 <div class="timeline">
-<% let lastdate = null; %>
-<% page.posts.each(function(post, i){ %>
-  <% const curdate = post.date; %>
-  <% if (lastdate === null || lastdate.year() !== curdate.year() || lastdate.month() !== curdate.month()){ %>
-    <% if (lastdate !== null){ %>
-      </div></section>
-    <% } %>
-    <% lastdate = curdate; %>
-    <section class="timeline-item">
-      <div class="timeline-left">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
-      </div>
-      <div class="timeline-content">
-        <div class="tile tile-centered">
-          <div class="tile-content">
-            <p class="tile-subtitle text-gray">
-              <time datetime="<%= date_xml(curdate) %>"><%= date(curdate, 'YYYY年MMM') %></time>
-            </p>
-          </div>
+  <% let lastdate = null; %>
+  <% page.posts.each(function(post, i){ %>
+    <% const curdate = post.date; %>
+    <% if (lastdate === null || lastdate.year() !== curdate.year() || lastdate.month() !== curdate.month()){ %>
+      <% if (lastdate !== null){ %>
+        </div></section>
+      <% } %>
+      <% lastdate = curdate; %>
+      <section class="timeline-item">
+        <div class="timeline-left">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
         </div>
+        <div class="timeline-content">
+          <div class="tile">
+            <div class="tile-content">
+              <p class="tile-subtitle">
+                <time datetime="<%= date_xml(curdate) %>"><%= date(curdate, 'YYYY年MMM') %></time>
+              </p>
+            </div>
+          </div>
+    <% } %>
+    <article class="tile tile-centered archive-type-<%= post.layout %>">
+      <div class="tile-content">
+        <div class="title-subtitle text-gray">
+          <ul class="meta">
+            <li>
+              <a href="<%- url_for(post.path) %>">阅读</a>
+            </li>
+            <li>
+              <% const pdate = post.date; %>
+              <time datetime="<%= date_xml(pdate) %>"><%= date(pdate, 'MM月D日') %></time>
+            </li>
+            <%- partial('meta/category', { post }) %>
+            <%- partial('meta/tag', { post }) %>
+          </ul>
+        </div>
+        <div class="tile-title">
+          <p class="h5"><%= post.title %></p>
+        </div>
+      </div>
+    </article>
+  <% }) %>
+  <% if (page.posts.length){ %>
+    </div></section>
   <% } %>
-  <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
-<% }) %>
-<% if (page.posts.length){ %>
-  </div></section>
-<% } %>
 </div>
 <% if (page.total > 1){ %>
   <% var prev_text = "&laquo; " + __('prev');var next_text = __('next') + " &raquo;"%>

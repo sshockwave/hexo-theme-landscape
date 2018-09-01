@@ -1,0 +1,11 @@
+<% if (post.categories && post.categories.length) { %>
+  <li>
+    <ul class="breadcrumb d-inline-block">
+      <% post.categories.forEach((category, i) => { %>
+        <li class="breadcrumb-item">
+          <a href="<%- url_for(category.path) %>"><%= category.name %></a>
+        </li>
+      <% }); %>
+    </ul>
+  </li>
+<% } %>

@@ -1,0 +1,26 @@
+<% if (config.livere_id) { %>
+  <div id="lv-container" data-id="city" data-uid="<%- config.livere_id %>">
+    <script type="text/javascript">
+      (function(d, s) {
+          if (typeof LivereTower === 'function') { return; }
+          var j, e = d.getElementsByTagName(s)[0];
+          j = d.createElement(s);
+          j.src = '<%- url_for('js/livere.dist.js')%>';
+          j.async = true;
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript>Enable JavaScript to comment.</noscript>
+  </div>
+<% } %>
+<% if (!index && post.comments && config.disqus_shortname){ %>
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+<% } %>
+<% if (!index && post.comments && theme.valine.enable && theme.valine.appId && theme.valine.appKey){ %>
+  <section id="comments" class="vcomment">
+  </section>
+<% } %>

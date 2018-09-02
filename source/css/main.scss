@@ -30,16 +30,27 @@ ol, ul, dl {
   font-size: $unit-6;
 }
 
+$body-bg-2: #000;
+
 .navbar {
   padding: $unit-3;
   box-shadow: 0 (-$unit-4) $unit-12 $unit-1 $dark-color;
-  background-color: #000;
+  background-color: $body-bg-2;
 }
 
 .footer {
   padding: $unit-12;
   font-size: $font-size-sm;
-  background-color: #000;
+  background-color: $body-bg-2;
+}
+
+code {
+  background-color: $body-bg-2;
+  color: #e0c46c;
+}
+
+.hljs {
+  background-color: $body-bg-2;
 }
 
 .content {
@@ -77,8 +88,4 @@ ol, ul, dl {
       }
     }
   }
-}
-
-.hljs {
-  background-color: #000;
 }

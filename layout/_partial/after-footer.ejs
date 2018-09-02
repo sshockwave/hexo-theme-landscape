@@ -39,3 +39,106 @@
     });
   </script>
 <% } %>
+
+<% if (config.algolia) { %>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.1"></script>
+  <script>
+    const search = instantsearch({
+      appId: '<%= config.algolia.applicationID %>',
+      apiKey: '<%= config.algolia.apiKey %>',
+      indexName: '<%= config.algolia.indexName %>',
+      routing: true,
+    });
+
+    search.addWidget(
+      instantsearch.widgets.searchBox({
+        container: '#search-box',
+        magnifier: false,
+        reset: false,
+        wrapInput: false,
+      })
+    );
+
+    function renderDate(date) {
+      date = new Date(date);
+      return `<li>
+        ${date.getMonth() + 1}月${date.getDate()}日
+      </li>`;
+    }
+    function renderCategories(categories) {
+      if (!categories) {
+        return '';
+      }
+      return `
+      <li>
+        <ul class="breadcrumb d-inline-block">
+          ${categories.map(category => `
+            <li class="breadcrumb-item">
+              <a href="${category.path}">${category.name}</a>
+            </li>
+          `).join('')}
+        </ul>
+      </li>
+      `;
+    }
+    function renderTags(tags) {
+      if (!tags) {
+        return '';
+      }
+      return `
+      <li>
+        ${tags.map(tag => `
+          <span class="label label-rounded">
+            <a href="${tag.path}">${tag.name}</a>
+          </span>
+        `).join('')}
+      </li>
+      `;
+    }
+    search.addWidget(
+      instantsearch.widgets.infiniteHits({
+        container: '#hits',
+        showMoreLabel: 'Show more results',
+        cssClasses: {
+          showmoreButton: ['btn', 'btn-link', 'centered'],
+        },
+        templates: {
+          empty: `<p class="text-gray">No matched results.</p>`,
+          item: record => `
+          <article class="tile tile-centered">
+            <div class="tile-content">
+              <div class="title-subtitle text-gray">
+                <ul class="meta">
+                  <li>
+                    <a href="${record.permalink}">阅读</a>
+                  </li>
+                  ${renderDate(record.date)}
+                  ${renderCategories(record.categories)}
+                  ${renderTags(record.tags)}
+                </ul>
+              </div>
+              <div class="tile-title">
+                <p class="h5">${record.title}</p>
+              </div>
+            </div>
+          </article>
+          `,
+        },
+      })
+    );
+
+    search.addWidget({
+      render: (function() {
+        const hits = document.getElementById('hits');
+        const searchBox = document.getElementById('search-box');
+        const contentBody = document.getElementById('content-body');
+        return function(opts) {
+          hits.style.display = searchBox.value !== '' ? 'block' : 'none';
+          contentBody.style.display = searchBox.value === '' ? 'block' : 'none';
+        }
+      })(),
+    });
+
+    search.start();
+  </script>
+<% } %>

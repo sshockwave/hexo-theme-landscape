@@ -1,7 +1,8 @@
 <%- partial('_partial/head') %>
 <body>
   <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-  <div class="content">
+  <div id="hits" class="container content" style="display: none;"></div>
+  <div id="content-body" class="content">
     <section class="container"><%- body %></section>
   </div>
   <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>

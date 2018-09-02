@@ -32,7 +32,7 @@ ol, ul, dl {
 
 $body-bg-2: #000;
 
-.navbar {
+.header {
   padding: $unit-3;
   box-shadow: 0 (-$unit-4) $unit-12 $unit-1 $dark-color;
   background-color: $body-bg-2;
@@ -88,4 +88,26 @@ code {
       }
     }
   }
+}
+
+.algolia-logo {
+  vertical-align: middle;
+}
+
+.d-none {
+  display: none;
+}
+
+#hits {
+  &::before {
+    content: "Search results:";
+  }
+}
+
+@mixin control-inset-shadow($color: $primary-color) {
+  box-shadow: 0 0 0 .1rem rgba($color, .2) inset;
+}
+
+.form-input:focus {
+  @include control-inset-shadow();
 }
